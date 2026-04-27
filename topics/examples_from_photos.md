@@ -1,68 +1,123 @@
-# Examples From Photos
+# Примеры задач по фото учебника (логика предикатов)
 
-This file captures the key task statements and practical solution patterns from the uploaded screenshots.
+Контекст для Cursor: задачи **9.30**, **9.35**, **9.38**, **9.43** и пример с таблицей истинности. Исходные снимки: `sources/photos/`.
 
-## Task 9.30 (single-element domain)
+---
 
-Show that each interpretation on a one-element domain makes the formulas true:
-- `P(x) -> P(y)`
-- `P(x) <-> P(y)`
-- `(exists x P(x)) -> P(y)`
-- `(exists x P(x)) -> (forall x P(x))`
-- `P(x) v not P(y)`
-- `(forall x)(forall y)(P(x) v not P(y))`
-- `P(x) -> (P(x) and P(y))`
-- `(P(x) v P(y)) -> P(x)`
-- `P(y) -> (forall x P(x))`
+## 9.30. Одноэлементная область
 
-### Pattern used
-- Let domain be `M={a}`.
-- Only two unary predicates exist on `M`: always-false and always-true.
-- Check each formula by direct substitution (`x=a`, `y=a`) and truth tables.
+**Условие.** Показать, что при любой интерпретации на множестве из **одного** элемента следующие формулы дают истинное высказывание:
 
-## Task 9.35 (satisfiable vs unsatisfiable)
+- `P(x) → P(y)`
+- `P(x) ↔ P(y)`
+- `(∃x)P(x) → P(y)`
+- `(∃x)P(x) → (∀x)P(x)`
+- `P(x) ∨ ¬P(y)`
+- `(∀x)(∀y)(P(x) ∨ ¬P(y))`
+- `P(x) → (P(x) ∧ P(y))`
+- `(P(x) ∨ P(y)) → P(x)`
+- `P(y) → (∀x)P(x)`
 
-Determine which formulas are satisfiable and which are identically false.
+### Метод (как в учебнике, п. «и»)
 
-### Visible sample conclusions from photo
-- `(exists x)(exists y)(P(x) and not P(y))` is satisfiable.
-- `not P(x) and (forall y)(P(y))` is unsatisfiable.
+Пусть `M = {a}`. Унарный предикат на одном элементе — это одно значение `P(a) ∈ {0,1}`: всего **две** конкретных интерпретации (`P` всегда ложен / всегда истинен). Свободные `x`, `y` можно заменить только на `a`. Тогда, например,
 
-### Pattern used
-- For satisfiability, build one model where formula is true.
-- For unsatisfiability, assume truth and derive contradiction.
+`P(y) → (∀x)P(x)` превращается в `P(a) → P(a)`, что всегда **1**.
 
-## Task 9.38 (non-equivalence pairs)
+Аналогично разбираются пункты **а–з**: после подстановки `x=y=a` остаются тавтологии алгебры высказываний.
 
-Prove formulas in each pair are not equivalent.
+---
 
-### Pattern used
-- Choose a concrete domain `M`.
-- Assign concrete predicates.
-- Show one formula is true and the other is false under same interpretation.
+## 9.35. Выполнимость и тождественная ложность
 
-### Example from photo
-For pair `(exists x)(P(x) -> Q(x))` and `(exists x P(x)) -> (exists x Q(x))`:
-- Let `M={1,2}`.
-- Let `P(x): x<3`, `Q(x): x<3`.
-- First formula can be forced false/true differently than the implication form under chosen interpretation, establishing non-equivalence.
+**Условие.** Определить, какие формулы **выполнимы**, какие **тождественно ложны** (список в учебнике: а–м).
 
-## Task 9.43 (tautologies of predicate logic)
+### Пример **л** (выполнима)
 
-Prove listed formulas are tautologies.
+`(∃x)(∃y)(P(x) ∧ ¬P(y))` — выполнима: на `M = ℕ`, `P(x)` ≔ «x чётно»; существуют чётное и нечётное число ⇒ формула истинна в этой модели.
 
-### Pattern used
-- Use known quantifier equivalences.
-- Use propositional tautologies lifted to predicate formulas.
-- If needed, use proof by contradiction: assume formula false and derive impossible valuation pattern.
+### Пример **м** (не выполнима / тождественно ложная формула-предикат)
 
-### Practical note
-For formulas where a predicate variable does not contain a subject variable, treat it as a fixed predicate symbol and reduce the target statement to a known quantifier law.
+`¬P(x) ∧ (∀y)P(y)`.
 
-## Table-style check pattern (from photo with truth table)
+Если бы существовали `M` и предикат `A`, при которых для **всех** `x ∈ M` выражение истинно, взяли бы `a ∈ M`: тогда `¬A(a)` и `(∀y)A(y)` одновременно ⇒ противоречие (`A(a)` должно быть и 0, и 1).
 
-For closed formulas with predicate variables only:
-1. Enumerate predicate valuations (`A0`, `A1`).
-2. Evaluate each subformula column.
-3. Compare columns of target formulas.
-4. Equal columns imply equivalence; mismatch implies non-equivalence.
+### Определение с того же разворота
+
+Две формулы **равносильны** (`F ≈ H`), если при любой подстановке конкретных предикатов (на одних и тех же множествах) получаются равносильные предикаты.
+
+---
+
+## 9.38. Пары формул **не** равносильны
+
+**Условие.** Доказать, что в каждой паре формулы **не** равносильны (список пар **а–к** — по учебнику).
+
+### Метод
+
+Построить **одну** интерпретацию (область `M` + предикаты), в которой первая формула истинна, а вторая ложна (или наоборот).
+
+### Пример **а** (чёткая контрмодель)
+
+Показать, что **`(∃x)(P(x) → Q(x))`** и **`((∃x)P(x) → (∃x)Q(x))`** не равносильны.
+
+Возьмём **`M = {0, 1}`** и зададим:
+
+| x | P(x) | Q(x) |
+|---|------|------|
+| 0 | 1    | 0    |
+| 1 | 0    | 0    |
+
+**Левая формула.** При `x=1`: `P(1) → Q(1)` = `0 → 0` = **1**, значит **`(∃x)(P(x) → Q(x))` истинно**.
+
+**Правая формула.** `(∃x)P(x)` истинно (свидетель `x=0`). `(∃x)Q(x)` **ложно** (нигде `Q` не 1). Тогда **`(∃x)P(x) → (∃x)Q(x)`** = `1 → 0` = **ложь**.
+
+Итог: в одной интерпретации формулы принимают **разные** значения ⇒ **не равносильны**.
+
+*(В учебнике для **а** также встречается вариант с `M = {1,2}`, `P(x)`: «x < 3», `Q(x)`: «3 | x» — удобно пересказать словами «левая ложна, правая истинна» **только после** явной проверки столбцов; универсальная модель в таблице выше уже разделяет значения.)*
+
+### Пример **ж** (идея из учебника)
+
+`(∃x)(P(x) → Q(y))` и `(∃x)P(x) → Q(y)` — при подстановке «безымянных» предикатов и значения для свободного `y` первая может стать **истинной**, вторая **ложной** (см. отсылку к задаче 9.31 в учебнике).
+
+---
+
+## Таблица: замкнутые формулы только от `P`, `Q` (фото, стр. ~189)
+
+Если формулы **замкнуты** (нет свободных предметных переменных), иногда достаточно перебрать интерпретации унарных `P`, `Q` как **A₀ / A₁** (конкретные предикаты на малой области).
+
+Сравнивают столбцы:
+
+- `(∀x)(P(x) → Q(x))`
+- `(∀x)P(x) → (∀x)Q(x)`
+
+При совпадении столбцов в учебнике делается вывод о **равносильности в рассматриваемом контексте** (как в примере с таблицей на фото).
+
+| P | Q | ∀x(P→Q) | ∀x P | ∀x Q | (∀x P)→(∀x Q) |
+|---|---|--------|------|------|----------------|
+| A₀ | A₀ | 1 | 0 | 0 | 1 |
+| A₀ | A₁ | 1 | 0 | 1 | 1 |
+| A₁ | A₀ | 0 | 1 | 0 | 0 |
+| A₁ | A₁ | 1 | 1 | 1 | 1 |
+
+(Числа как в учебнике; **проверяйте** условия «замкнутость» и область, под которые составлена таблица.)
+
+---
+
+## 9.43. Тавтологии логики предикатов
+
+**Условие.** Доказать, что перечисленные формулы — **тавтологии** (список **а–с** в учебнике).
+
+### Метод
+
+- Законы перестановки кванторов с `∧`, `∨`, импликацией (см. конспект `lectures/03_logika_predikatov_konspekt.md`).
+- Законы де Моргана для кванторов.
+- Для **л**: `(∀x)(P(x) → Q) ↔ ((∃x)P(x) → Q)` при условии, что `Q` **не содержит** `x` — доказательство от противного по вариантам истинности эквиваленции (как начато в учебнике).
+
+---
+
+## English summary (for mixed-language chats)
+
+- **9.30:** On `|M|=1`, enumerate two unary predicates; substitute `x=y=a`; propositional tautologies.
+- **9.35:** Satisfiable = some model; unsatisfiable = contradiction from `∀x` of a predicate.
+- **9.38:** Non-equivalence = one counter-model with different truth values.
+- **9.43:** Predicate tautologies via quantifier laws + contradiction for hard cases.

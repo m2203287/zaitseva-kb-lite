@@ -1,28 +1,41 @@
-﻿# INDEX
+﻿# База знаний — указатель (Cursor, в т.ч. телефон)
 
-## Goal
-Comprehensive knowledge base for solving predicate-logic tasks in Cursor.
+## С чего начать в чате
 
-## How to query
-1. Ask for strict step-by-step proof.
-2. Request used theorem/rule on each step.
-3. Request final short conclusion.
+```
+Используй только этот репозиторий как контекст.
+Сначала прочитай @lectures/README.md и ответь на задачу пошагово.
+```
 
-## Primary Topics
-- Predicate formulas and quantifiers.
-- Satisfiability / unsatisfiability.
-- Tautologies in predicate logic.
-- Formula equivalence and non-equivalence.
-- Typical transformations with quantifiers.
+Для задач из учебника по фото добавьте: `@topics/examples_from_photos.md`.
 
-## Included Sources
-- `lectures/3Логика предикатов.pdf` (full lecture file).
-- `topics/examples_from_photos.md` (task examples from screenshots).
-- `sources/photos/image.png`
-- `sources/photos/image copy.png`
-- `sources/photos/image copy 2.png`
-- `sources/photos/image copy 3.png`
-- `sources/photos/image copy 4.png`
+---
 
-## Recommended chat instruction
-"Use only this repository as context. If data is missing, explicitly say what is missing."
+## Чеклист: что должно быть в репозитории
+
+| Нужно для зачёта / подготовки | Где |
+|------------------------------|-----|
+| Логика предикатов: определения, кванторы, равносильности, ПНФ, выполнимость | `lectures/03_logika_predikatov_konspekt.md` + PDF `lectures/3Логика предикатов.pdf` |
+| Исчисление высказываний: связки, аксиомы I–IV, подстановка, modus ponens | `lectures/02_klassicheskoe_ischislenie_vyskazyvanij.md` + PDF `lectures/Классическое исчисление высказываний.pdf` |
+| Формальные системы, доказательство, интерпретация, проблемы теории | `lectures/01_formalnaya_aksiomaticheskaya_teoriya.md` + PDF `lectures/Формальная аксиоматическая теория.pdf` |
+| Задачи 9.30, 9.35, 9.38, 9.43, таблица равносильности | `topics/examples_from_photos.md` + `sources/photos/*.png` |
+| Шаблон запроса к агенту | `prompts/solve_task_template.md` |
+| Краткие темы (англ.) | `topics/predicate_logic.md`, `topics/equivalence_and_tautologies.md` |
+
+Если чего-то нет в списке файлов — напишите в чат «обнови репозиторий с GitHub».
+
+---
+
+## Цель
+
+Строгие пошаговые решения по логике предикатов и смежным разделам с явным указанием правил и интерпретаций.
+
+## Как формулировать запрос
+
+1. Попросить строгое пошаговое доказательство.
+2. Указать: область, предикаты, используемые равносильности.
+3. Попросить краткий итог в конце.
+
+## Рекомендуемая инструкция в чат
+
+«Используй только этот репозиторий. Если данных не хватает — явно перечисли, чего не хватает.»
