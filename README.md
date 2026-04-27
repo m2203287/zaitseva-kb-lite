@@ -1,7 +1,6 @@
-﻿# Zaitseva KB Lite
+﻿# Zaitseva KB Lite+
 
-This repository is optimized for fast Cursor snapshot/indexing.
-It intentionally contains only lightweight markdown context.
+This repository is prepared for Cursor Knowledge Base usage with broad coverage.
 
 ## Use in Cursor
 - Add this repository as Knowledge Base.
@@ -11,8 +10,9 @@ It intentionally contains only lightweight markdown context.
 - `INDEX.md` - navigation and working rules.
 - `topics/predicate_logic.md` - key definitions and methods.
 - `topics/equivalence_and_tautologies.md` - common proof patterns.
-- `prompts/solve_task_template.md` - reusable prompt template.
+- `topics/examples_from_photos.md` - extracted task statements and solution patterns from photos.
+- `lectures/3Логика предикатов.pdf` - full lecture source.
+- `sources/photos/` - photos used as practical examples.
 
 ## Note
-Source scans and heavy binary files (PDF/PNG/DOCX) are kept outside this lite repo
-for faster environment builds.
+This version intentionally includes major source materials requested for completeness.
